@@ -2,7 +2,7 @@ import {CallFileItem, CallOption, CallWrapperLike} from "./index-types";
 import {EndpointWrapperLike} from "../endpoint";
 import {leyyo, RecLike} from "@leyyo/core";
 import {Fqn} from "@leyyo/fqn";
-import {FQN_NAME} from "../internal-component";
+import {FQN_NAME} from "../internal";
 import axios, {AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse} from "axios";
 import {PAYLOAD_SEND} from "../index-types";
 import * as qs from "qs";

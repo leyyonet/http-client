@@ -1,3 +1,2 @@
-export * from './index-types';
-export * from './endpoint-config';
-export * from './endpoint-wrapper';
+export * from './index.types';
+export * from './client-endpoint';

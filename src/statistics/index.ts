@@ -1,2 +1,2 @@
-export * from './index-types';
-export * from './statistics-wrapper';
+export * from './index.types';
+export * from './client-statistics';
