@@ -1,5 +1,6 @@
-import {decoratorPool, footprint, Provider} from "@leyyo/core";
-import {$assert, $dev, $is, Dict, ValueCallbackAsync} from "@leyyo/common";
+import {decoratorPool, footprint} from "@leyyo/core";
+import {Provider} from "@leyyo/injection";
+import {$assert, $dev, $is, Dict, ValueCallback, ValueCallbackAsync} from "@leyyo/common";
 import {AsyncFnc, Fnc, ValueOrCallback} from "@leyyo/common";
 import {FQN_PCK} from "../../internal";
 
@@ -38,12 +39,14 @@ const id = decoratorPool.newId<HttpClientOpt, Dict, P>(HttpClient)
                 opt.url = p.url;
             }
             else {
-                $assert.func(p.url, $dev.desc(ins, {field: 'url lambda'}));
-                if (footprint.isAsync(p.url)) {
-                    opt.fnAsync = p.url as ValueCallbackAsync<string>;
+
+                const fn = p.url as ValueCallback<string> | ValueCallbackAsync<string>;
+                $assert.func(fn, $dev.desc(ins, {field: 'url lambda'}));
+                if (footprint.isAsync(fn)) {
+                    opt.fnAsync = fn as ValueCallbackAsync<string>;
                 }
                 else {
-                    opt.fn = p.url;
+                    opt.fn = fn as ValueCallback<string>;
                 }
             }
         }
